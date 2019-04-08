@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PlanilhaEletronicaWeb.Models.Classes.Despesa>
+
+@{
+    ViewBag.Title = "Índice";
+}
+
+<h2>Índice</h2>
+
+<p>
+    @Html.ActionLink("Nova criação", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoDespesa.Despesa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Caracteristica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Situacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDespesa.Despesa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Caracteristica)
+        </td>
+        <td>
+            @Html.Raw(item.Situacao == true ? "Ativo" : "Inativo")
+        </td>
+        <td>
+            @Html.Raw(string.Format("R$ {0:C}", item.Valor))
+            @*@Html.DisplayFor(modelItem => item.Valor)*@
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdDespesa }) |
+            @Html.ActionLink("Detalhar", "Details", new { id=item.IdDespesa }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.IdDespesa })
+        </td>
+    </tr>
+}
+    <tfoot class="footer">
+        <tr>
+            <td><b>Total</b></td>
+            <td><b>---</b></td>
+            <td><b>---</b></td>
+            <td><b>---</b></td>
+            <td>@Html.Raw(String.Format("<b>R$ {0:n2}</b>", @Model.Sum(i => i.Valor)))</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>

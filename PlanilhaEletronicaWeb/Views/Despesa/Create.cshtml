@@ -1,0 +1,87 @@
+﻿@model PlanilhaEletronicaWeb.Models.Classes.Despesa
+
+@{
+    ViewBag.Title = "Criar";
+}
+
+<h2>Criar</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Despesa</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TipoDespesaID, "Tipo Despesa", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("TipoDespesaID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TipoDespesaID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descricao, "Descrição", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Situacao, "Situação", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Situacao)
+                @Html.ValidationMessageFor(model => model.Situacao, "", new { @class = "text-danger" })
+                @Html.Label("Ativado/Desativado")
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Caracteristica, "Característica", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EnumDropDownListFor(model => model.Caracteristica, htmlAttributes: new { @class = "form-control" })*@
+
+            @foreach (var item in Enum.GetValues(typeof(PlanilhaEletronicaWeb.Models.Classes.Despesa.CaracteristicaDespesa)))
+            {
+                var id = TagBuilder.CreateSanitizedId(string.Format(
+                    "{0}_{1}_{2}", "caract", typeof(PlanilhaEletronicaWeb.Models.Classes.Despesa.CaracteristicaDespesa), item));
+                <div>
+                    @Html.RadioButtonFor(s => s.Caracteristica, item, new { id })
+                    @Html.Label(item.ToString(), new { @for = id })
+                </div>
+            }
+
+            @Html.ValidationMessageFor(model => model.Caracteristica, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Criar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Voltar para lista.", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

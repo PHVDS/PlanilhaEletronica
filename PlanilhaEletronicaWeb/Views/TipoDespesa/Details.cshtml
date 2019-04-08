@@ -1,0 +1,42 @@
+﻿@model PlanilhaEletronicaWeb.Models.Classes.TipoDespesa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TipoDespesa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Despesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Despesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Situacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Situacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Caracteristica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Caracteristica)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdTipoDespesa }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

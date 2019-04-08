@@ -1,0 +1,68 @@
+﻿@model PlanilhaEletronicaWeb.Models.Classes.TipoDespesa
+
+@{
+    ViewBag.Title = "Criar";
+}
+
+<h2>Criação</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>TipoDespesa</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Despesa, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Despesa, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Despesa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Caracteristica, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <!--
+            @Html.EditorFor(model => model.Caracteristica, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Caracteristica, "", new { @class = "text-danger" })
+            -->
+            @Html.RadioButtonFor(model => model.Caracteristica, "Gasto com Produto ou Serviço")
+            @Html.Label("Gasto com Produto ou Serviço")
+            <br />
+            @Html.RadioButtonFor(model => model.Caracteristica, "Aplicação em investimento")
+            @Html.Label("Aplicação em investimento")
+            <br />
+            @Html.RadioButtonFor(model => model.Caracteristica, "Transferência entre Contas")
+            @Html.Label("Transferência entre Contas")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Situacao, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Situacao)
+                @Html.ValidationMessageFor(model => model.Situacao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Voltar para lista.", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

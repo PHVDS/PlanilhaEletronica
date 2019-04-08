@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PlanilhaEletronicaWeb.Models.Classes.TipoDespesa>
+
+@{
+    ViewBag.Title = "Índice";
+}
+
+<h2>Início</h2>
+
+<p>
+    @Html.ActionLink("Nova criação", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <form action="Index" method="get">
+            <p>
+                Buscar por nome: @Html.TextBox("busca", null, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="submit" value="Buscar" class="btn btn-info" /> | @Html.ActionLink("Voltar", "Index")
+            </p>
+        </form>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Despesa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Situacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Caracteristica)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Despesa)
+            </td>
+            <td>
+                @Html.Raw(item.Situacao == true? "Ativo" : "Inativo")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Caracteristica)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdTipoDespesa }) |
+                @Html.ActionLink("Detalhar", "Details", new { id = item.IdTipoDespesa }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.IdTipoDespesa })
+            </td>
+        </tr>
+    }
+
+</table>

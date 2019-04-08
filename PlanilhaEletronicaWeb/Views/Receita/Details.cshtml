@@ -1,0 +1,94 @@
+﻿@model PlanilhaEletronicaWeb.Models.Classes.Receita
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Receita</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoReceita.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoReceita.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.Raw(string.Format("R$ {0:C}", Model.Valor))
+            @*@Html.DisplayFor(model => model.Valor)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataRecebimento)
+        </dt>
+
+        <dd>
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.DataRecebimento))
+            @*@Html.DisplayFor(model => model.DataRecebimento)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Situacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Situacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FormaRecebimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormaRecebimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parcela)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parcela)
+        </dd>
+
+        @*
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTipoReceita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTipoReceita)
+        </dd>
+        *@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
