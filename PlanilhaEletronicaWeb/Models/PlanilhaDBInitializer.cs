@@ -32,6 +32,17 @@ namespace PlanilhaEletronicaWeb.Models
 					context.SaveChanges();
 					#endregion
 
+					#region  Tipo Receitas
+					IList<TipoReceita> tipoReceitas = new List<TipoReceita>();
+					tipoReceitas.Add(new TipoReceita() { Nome = "Salário" });
+					tipoReceitas.Add(new TipoReceita() { Nome = "Restituição IR" });
+					tipoReceitas.Add(new TipoReceita() { Nome = "Indenização" });
+					tipoReceitas.Add(new TipoReceita() { Nome = "Transferência entre Contas" });
+
+					context.TipoReceitas.AddRange(tipoReceitas);
+					context.SaveChanges();
+					#endregion
+
 				}
 				catch (Exception e)
 				{

@@ -29,41 +29,54 @@
             @Html.DisplayNameFor(model => model.FormaRecebimento)
         </th>
 
+        <th>
+            @Html.DisplayNameFor(model => model.Parcela.NumeroParcelas)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Situacao)
+        </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoReceita.Nome)
-        </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoReceita.Nome)
+            </td>
 
-        <td>
-            @Html.Raw(string.Format("R$ {0:C}", item.Valor))
-            @*@Html.DisplayFor(modelItem => item.Valor)*@
-        </td>
-        <td>
-            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.DataRecebimento))
-            @*@Html.DisplayFor(modelItem => item.DataRecebimento)*@
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
+            <td>
+                @Html.Raw(string.Format("{0:C}", item.Valor))
+                @*@Html.DisplayFor(modelItem => item.Valor)*@
+            </td>
+            <td>
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.DataRecebimento))
+                @*@Html.DisplayFor(modelItem => item.DataRecebimento)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.FormaRecebimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Parcela)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormaRecebimento)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parcela.NumeroParcelas)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Situacao)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
     }
 
     <tfoot class="footer">
@@ -76,5 +89,11 @@
             <td></td>
         </tr>
     </tfoot>
-
 </table>
+
+  
+
+        
+
+        
+

@@ -117,8 +117,9 @@ namespace PlanilhaEletronicaWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TipoDespesa tipoDespesa = db.TipoDespesas.Find(id);
-			db.TipoDespesas.Remove(tipoDespesa);
-			//tipoDespesa.Situacao = false;
+			db.Entry(tipoDespesa).State = EntityState.Modified;
+			//db.TipoDespesas.Remove(tipoDespesa);
+			tipoDespesa.Situacao = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

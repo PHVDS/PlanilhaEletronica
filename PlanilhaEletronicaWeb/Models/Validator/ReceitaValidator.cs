@@ -20,10 +20,10 @@ namespace PlanilhaEletronicaWeb.Models.Validator
 			RuleFor(receita => receita.DataRecebimento).Must(DataValida).WithMessage("Data com formato errado!");
 			RuleFor(receita => receita.Descricao).Length(25).WithMessage("Máximo de 25 caracteres!");
 			RuleFor(receita => receita.Parcela)
-				.Must(p => p.FormaReceita == ParcelaReceita.TipoParcela.Unica && p.NumeroParcelas == 1).WithMessage("Receita não parcelada!");
+				.Must(p => p.FormaReceita == ParcelaReceita.TipoParcela.Unica && (int)p.NumeroParcelas == 1).WithMessage("Receita não parcelada!");
 
 			RuleFor(receita => receita.Parcela)
-				.Must(p => p.FormaReceita == ParcelaReceita.TipoParcela.Dividido && p.NumeroParcelas > 1).WithMessage("Pelo menos 2 parcelas");
+				.Must(p => p.FormaReceita == ParcelaReceita.TipoParcela.Dividido && (int)p.NumeroParcelas > 1).WithMessage("Pelo menos 2 parcelas");
 		}
 
 		private bool DataValida(DateTime data)

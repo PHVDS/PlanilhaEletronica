@@ -24,6 +24,8 @@ namespace PlanilhaEletronicaWeb.Models
 		public DbSet<Classes.Categoria> Categorias { get; set; }
 		public DbSet<Classes.TipoDespesa> TipoDespesas { get; set; }
 		public DbSet<Classes.Despesa> Despesas { get; set; }
+		public DbSet<Classes.Receita> Receitas { get; set; }
+		public DbSet<Classes.TipoReceita> TipoReceitas { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
@@ -31,11 +33,9 @@ namespace PlanilhaEletronicaWeb.Models
 			modelBuilder.Configurations.Add(new DespesaMap());
 			modelBuilder.Configurations.Add(new ClienteMap());
 			modelBuilder.Configurations.Add(new CategoriaMap());
+			modelBuilder.Configurations.Add(new ReceitaMap());
+			modelBuilder.Configurations.Add(new TipoReceitaMap());
 			base.OnModelCreating(modelBuilder);
-		}
-
-		public System.Data.Entity.DbSet<PlanilhaEletronicaWeb.Models.Classes.Receita> Receitas { get; set; }
-
-		public System.Data.Entity.DbSet<PlanilhaEletronicaWeb.Models.Classes.TipoReceita> TipoReceitas { get; set; }
+		}	
 	}
 }

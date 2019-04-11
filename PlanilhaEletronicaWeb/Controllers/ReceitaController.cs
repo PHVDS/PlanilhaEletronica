@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using PlanilhaEletronicaWeb.Models;
 using PlanilhaEletronicaWeb.Models.Classes;
@@ -18,7 +15,8 @@ namespace PlanilhaEletronicaWeb.Controllers
         // GET: Receita
         public ActionResult Index()
         {
-            return View(db.Receitas.ToList());
+			var receitas = db.Receitas.Include(r => r.TipoReceita);
+			return View(receitas.ToList());
         }
 
         // GET: Receita/Details/5
@@ -39,7 +37,8 @@ namespace PlanilhaEletronicaWeb.Controllers
         // GET: Receita/Create
         public ActionResult Create()
         {
-            return View();
+			ViewBag.IdTipoReceita = new SelectList(db.TipoReceitas, "Id", "Nome");
+			return View();
         }
 
         // POST: Receita/Create
@@ -55,8 +54,8 @@ namespace PlanilhaEletronicaWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(receita);
+			ViewBag.IdTipoReceita = new SelectList(db.TipoReceitas, "Id", "Nome", receita.IdTipoReceita);
+			return View(receita);
         }
 
         // GET: Receita/Edit/5
@@ -71,7 +70,8 @@ namespace PlanilhaEletronicaWeb.Controllers
             {
                 return HttpNotFound();
             }
-            return View(receita);
+			ViewBag.IdTipoReceita = new SelectList(db.TipoReceitas, "Id", "Nome", receita.IdTipoReceita);
+			return View(receita);
         }
 
         // POST: Receita/Edit/5
@@ -87,7 +87,8 @@ namespace PlanilhaEletronicaWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(receita);
+			ViewBag.IdTipoReceita = new SelectList(db.TipoReceitas, "Id", "Nome", receita.IdTipoReceita);
+			return View(receita);
         }
 
         // GET: Receita/Delete/5
@@ -111,8 +112,10 @@ namespace PlanilhaEletronicaWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Receita receita = db.Receitas.Find(id);
-            db.Receitas.Remove(receita);
-            db.SaveChanges();
+			db.Entry(receita).State = EntityState.Modified;
+			//db.Receitas.Remove(receita);
+			receita.Situacao = false;
+			db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -23,8 +23,8 @@
         </dt>
 
         <dd>
-            @Html.Raw(string.Format("R$ {0:C}", Model.Valor))
-            @*@Html.DisplayFor(model => model.Valor)*@
+           @Html.Raw(string.Format("{0:C}", Model.Valor))
+           
         </dd>
 
         <dt>
@@ -69,11 +69,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Parcela)
+            @Html.DisplayNameFor(model => model.Parcela.NumeroParcelas)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Parcela)
+            @Html.DisplayFor(model => model.Parcela.NumeroParcelas)
         </dd>
 
         @*

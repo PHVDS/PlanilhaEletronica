@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,10 +11,13 @@ namespace PlanilhaEletronicaWeb.Models.Classes
 	{
 		public int Id { get; set; }
 		public float Valor { get; set; }
+		[DisplayFormat(ApplyFormatInEditMode = true)]
+		[Display(Name = "Data de Recebimento")]
 		public DateTime DataRecebimento { get; set; }
 		public String Descricao { get; set; }
 		public String Observacao { get; set; }
 		public bool Situacao { get; set; }
+		[Display(Name = "Forma de Recebimento")]
 		public MeioRecebimento FormaRecebimento { get; set; }
 		public ParcelaReceita Parcela { get; set; }
 
@@ -43,6 +47,7 @@ namespace PlanilhaEletronicaWeb.Models.Classes
 			Dividido
 		}
 
+		[Display(Name = "Parcelas")]
 		public int NumeroParcelas { get; set; }
 	}
 }

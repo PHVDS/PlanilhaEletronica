@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\DespesaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListaReceitaController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReceitaController.cs" />
     <Compile Include="Controllers\TipoDespesaController.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Classes\Categoria.cs" />
     <Compile Include="Models\Classes\Cliente.cs" />
+    <Compile Include="Models\Classes\ExtensionsEnum.cs" />
     <Compile Include="Models\Classes\Receita.cs" />
     <Compile Include="Models\Classes\TipoDespesa.cs" />
     <Compile Include="Models\Classes\TipoReceita.cs" />
@@ -323,6 +325,7 @@
     <Content Include="Views\TipoReceita\Details.cshtml" />
     <Content Include="Views\TipoReceita\Edit.cshtml" />
     <Content Include="Views\TipoReceita\Index.cshtml" />
+    <Content Include="Views\ListaReceita\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

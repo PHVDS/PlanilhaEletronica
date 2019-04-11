@@ -43,7 +43,8 @@
                 @Html.DisplayFor(modelItem => item.Despesa)
             </td>
             <td>
-                @Html.Raw(item.Situacao == true? "Ativo" : "Inativo")
+                @Html.DisplayFor(modelItem => item.Situacao)
+                @*@Html.Raw(item.Situacao == true ? "Ativo" : "Inativo")*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Caracteristica)
